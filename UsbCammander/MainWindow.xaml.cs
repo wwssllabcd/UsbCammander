@@ -67,11 +67,9 @@ namespace UsbCammander
             byte[] ioBuf = new byte[65535];
             bool ret = device.sendScsiCommand(myHandle.handle, cmd.cdb, ioBuf, cmd.length, cmd.direction);
             EricWang.Utility u = new EricWang.Utility();
-            txtMsg.Text = u.makeHexTable(ioBuf, cmd.length);
 
-            txtMsg.Text = u.makeHeader(txtMsg.Text);
-
-            txtAscii.Text = u.makeAsciiTable(ioBuf);
+            txtMsg.Text = u.makeHeader(u.makeHexTable(ioBuf, cmd.length));
+            txtAscii.Text = u.makeAsciiTable(ioBuf, cmd.length);
         }
 
         private void cboCmdSel_SelectionChanged(object sender, SelectionChangedEventArgs e) {
