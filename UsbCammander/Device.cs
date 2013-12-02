@@ -87,7 +87,7 @@ namespace EricWang
             //[MarshalAs(UnmanagedType.ByValArray, SizeConst = 24)]
             //internal byte[] sense;
             // adapt to suit your needs!!!!!!! 
-            [MarshalAs( UnmanagedType.ByValArray, SizeConst = 0x24 )]    //changed to match CDB
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 64*1024)]    //changed to match CDB
             internal byte[] data;
         };
 
@@ -136,7 +136,7 @@ namespace EricWang
         }
 
         public bool sendScsiCommand( SafeFileHandle sHandle, byte[] cdb, byte[] ioBuffer, ulong dataLen, byte direction ) {
-            uint IOCTL_SCSI_PASS_THROUGH = CTL_CODE( FILE_DEVICE_CONTROLLER, 0x0401, METHOD_BUFFERED, FILE_READ_ACCESS | FILE_WRITE_ACCESS );
+            uint IOCTL_SCSI_PASS_THROUGH = CTL_CODE( FILE_DEVICE_CONTROLLER, 0x0401, METHOD_BUFFERED, FILE_READ_ACCESS | FILE_WRITE_ACCESS ); //0x4D004
             SCSI_PASS_THROUGH_WITH_BUFFERS sptwb = new SCSI_PASS_THROUGH_WITH_BUFFERS();
 
             // initilalize the cdb
@@ -163,7 +163,7 @@ namespace EricWang
 
             int sptwbLen = Marshal.SizeOf(sptwb);
             IntPtr inBuffer = Marshal.AllocHGlobal(sptwbLen);
-            Marshal.StructureToPtr(sptwb, inBuffer, false);
+            Marshal.StructureToPtr(sptwb.spt, inBuffer, false);
 
             // call DeviceIoControl passing the buffer inpBuffer as inp buffer and/or output buffer depending on the command.
             uint Dummy = 0;
