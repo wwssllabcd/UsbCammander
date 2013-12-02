@@ -183,7 +183,8 @@ namespace EricWang
                 IntPtr.Zero );
 
 
-            Marshal.PtrToStructure( inBuffer, sptwb );
+            //Marshal.PtrToStructure( inBuffer, sptwb );
+
             Array.Copy( sptwb.data, ioBuffer, (int)dataLen );
             return ret;
         }

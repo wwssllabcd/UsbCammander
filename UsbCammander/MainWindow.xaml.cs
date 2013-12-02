@@ -18,6 +18,9 @@ using EricWang;
 using System.IO; // DirveInfo
 
 
+
+
+
 namespace UsbCammander
 {
     /// <summary>
@@ -38,11 +41,9 @@ namespace UsbCammander
             USbCmdUtility ucu = new USbCmdUtility();
             ucu.getAllCmd(m_cmdColls);
 
-            UsbCmd cmd = m_cmdColls[0];
-            cboCmdSel.Items.Add(cmd.desc);
-
-            cmd = m_cmdColls[1];
-            cboCmdSel.Items.Add(cmd.desc);
+            foreach(UsbCmd cmd in m_cmdColls) {
+                cboCmdSel.Items.Add(cmd.desc);
+            }
         }
 
         private void btnReFresh_Click( object sender, RoutedEventArgs e ) {
@@ -60,12 +61,16 @@ namespace UsbCammander
             EricWang.Device.MyHandle myHandle = m_handleColls[curSel];
             EricWang.Device device = new EricWang.Device();
 
-            UsbCmd cmd = new UsbCmd();
+            UsbCmd cmd = m_cmdColls[cboCmdSel.SelectedIndex];
 
-            byte[] ioBuf = new byte[100];
+
+            byte[] ioBuf = new byte[65535];
             bool ret = device.sendScsiCommand(myHandle.handle, cmd.cdb, ioBuf, cmd.length, cmd.direction);
             EricWang.Utility u = new EricWang.Utility();
-            txtMsg.Text = u.makeHexTable(ioBuf);
+            txtMsg.Text = u.makeHexTable(ioBuf, cmd.length);
+
+            txtMsg.Text = u.makeHeader(txtMsg.Text);
+
             txtAscii.Text = u.makeAsciiTable(ioBuf);
         }
 
