@@ -161,13 +161,14 @@ namespace EricWang
             sptwb.spt.TimeOutValue = 30;
             sptwb.spt.DataIn = direction;
 
-            IntPtr inBuffer = Marshal.AllocHGlobal( Marshal.SizeOf( sptwb ) );
-            Marshal.StructureToPtr( sptwb, inBuffer, false );
+            int sptwbLen = Marshal.SizeOf(sptwb);
+            IntPtr inBuffer = Marshal.AllocHGlobal(sptwbLen);
+            Marshal.StructureToPtr(sptwb, inBuffer, false);
 
             // call DeviceIoControl passing the buffer inpBuffer as inp buffer and/or output buffer depending on the command.
             uint Dummy = 0;
-            uint inputBufLen = (uint)Marshal.SizeOf( sptwb.spt );
-            uint outputBufLen = (uint)Marshal.SizeOf( sptwb ); // 0x54
+            uint inputBufLen = (uint)Marshal.SizeOf(sptwb.spt);
+            uint outputBufLen = (uint)Marshal.SizeOf(sptwb); // 0x54
 
 
             bool ret = DeviceIoControl(
@@ -183,7 +184,7 @@ namespace EricWang
                 IntPtr.Zero );
 
 
-            //Marshal.PtrToStructure( inBuffer, sptwb );
+            Marshal.PtrToStructure(inBuffer, sptwb);
 
             Array.Copy( sptwb.data, ioBuffer, (int)dataLen );
             return ret;
