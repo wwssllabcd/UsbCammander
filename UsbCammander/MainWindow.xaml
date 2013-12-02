@@ -12,7 +12,7 @@
                     </Grid.ColumnDefinitions>
                     <ComboBox Height="23" HorizontalAlignment="Left" Margin="0,6,0,0" Name="cboDeviceSel" VerticalAlignment="Top" Width="89" />
                     <Button Content="Execute" Height="23" HorizontalAlignment="Left" Margin="95,6,0,0" Name="btnExecute" VerticalAlignment="Top" Width="75" Click="btnExecute_Click" />
-                    <Button Content="ReFresh" Height="23" HorizontalAlignment="Left" Margin="176,6,0,0" Name="btnReFresh" VerticalAlignment="Top" Width="75" Click="btnReFresh_Click" />
+                    <Button Content="ReFresh" Height="23" HorizontalAlignment="Right" Margin="0,7,493,0" Name="btnReFresh" VerticalAlignment="Top" Width="75" Click="btnReFresh_Click" />
                     <TextBox Height="368" HorizontalAlignment="Left" Margin="1,139,0,0" Name="txtMsg" VerticalAlignment="Top" Width="417" FontFamily="Courier New" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
                     <TextBox Height="28" HorizontalAlignment="Left" Margin="1,88,0,0" Name="txtCdb_00" VerticalAlignment="Top" Width="30" />
                     <TextBox Height="28" HorizontalAlignment="Left" Margin="32,88,0,0" Name="txtCdb_01" VerticalAlignment="Top" Width="30" />
@@ -27,20 +27,17 @@
                     <TextBox Height="28" HorizontalAlignment="Left" Margin="311,88,0,0" Name="txtCdb_10" VerticalAlignment="Top" Width="30" />
                     <TextBox Height="28" HorizontalAlignment="Left" Margin="343,88,0,0" Name="txtCdb_11" VerticalAlignment="Top" Width="30" />
                     <TextBox Height="368" HorizontalAlignment="Left" Margin="424,139,0,0" Name="txtAscii" VerticalAlignment="Top" Width="333" FontFamily="Courier New" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.ColumnSpan="2" />
-                    <ComboBox Height="22" HorizontalAlignment="Left" Margin="52,37,0,0" Name="cboCmdSel" VerticalAlignment="Top" Width="198" SelectionChanged="cboCmdSel_SelectionChanged" />
-                    <TextBox Height="23" HorizontalAlignment="Left" Margin="318,7,0,0" Name="txtLength" VerticalAlignment="Top" Width="56" />
-                    <GroupBox Header="Direction" Height="61" HorizontalAlignment="Left" Margin="391,7,0,0" Name="groupBox1" VerticalAlignment="Top" Width="78"></GroupBox>
-                    <Grid Height="38" Width="78" Margin="391,20,273,454">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10*" />
-                            <ColumnDefinition Width="62*" />
-                            <ColumnDefinition Width="6*" />
-                        </Grid.ColumnDefinitions>
-                        <RadioButton Content="Data Out" Height="16" HorizontalAlignment="Left" Margin="6,23,0,0" Name="rdoDataOut" VerticalAlignment="Top" Grid.ColumnSpan="2" />
-                        <RadioButton Content="Data In" Height="16" Name="rdoDataIn" Margin="6,6,0,16" Grid.ColumnSpan="2" />
-                    </Grid>
+                    <ComboBox Height="22" HorizontalAlignment="Left" Margin="64,43,0,0" Name="cboCmdSel" VerticalAlignment="Top" Width="259" SelectionChanged="cboCmdSel_SelectionChanged" />
                     <Label Content=" 00      01       02      03       04       05      06      07       08      09      10      11" Height="28" HorizontalAlignment="Left" Margin="0,65,0,0" Name="label1" VerticalAlignment="Top" Width="374" IsEnabled="True" />
                     <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="1,114,0,0" Name="label2" VerticalAlignment="Top" Width="368" />
+                    <Label Content="Command:" Height="22" HorizontalAlignment="Left" Margin="0,43,0,0" Name="label3" VerticalAlignment="Top" Width="62" />
+                    <GroupBox Header="Direction" Height="93" HorizontalAlignment="Left" Margin="380,0,0,0" Name="groupBox1" VerticalAlignment="Top" Width="79">
+                        <Grid Width="67" Height="68">
+                            <TextBox Name="txtLength" Width="56" Margin="0,0,10,45" />
+                            <RadioButton Content="Data In" Height="15" Name="rdoDataIn" Margin="0,26,0,27" />
+                            <RadioButton Content="Data Out" Name="rdoDataOut" Height="18" VerticalAlignment="Bottom" Margin="0,0,0,6" />
+                        </Grid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Sequency Random Write" Name="tabSRW"/>
